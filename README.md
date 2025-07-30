@@ -46,24 +46,24 @@ All these elements need tight coupling to make a well-functioning system. That�
 - LiteLLMModel – A drop‑in wrapper around any OpenAI‑compatible chat/completion API (Ollama, OpenAI, etc.)
 - ChatMessage – A simple class for “role + content” messages
 
-smolagents.agents
+### smolagents.agents
 - Agent – Base class to orchestrate multi‑step loops (think ReAct: Thought → Action → Observation)
 - AgentConfig – Holds settings like system prompts, retry logic, & max turns
 
-smolagents.tools
+### smolagents.tools
 - Tool – Defines name, description, and a Python function to call
 
 Built‑in examples: e.g. calculator, HTTP fetch, file reader
 
-smolagents.memory
+### smolagents.memory
 - InMemoryMemory – Keeps track of past observations/prompts in a list
 
 (You can swap in your own DB‑backed memory if needed)
 
-smolagents.chain
+### smolagents.chain
 - Chain – Simple way to wire multiple calls together (model → tool → model → …)
 
-smolagents.parsers
+### smolagents.parsers
 - OutputParser – Extracts “Action: …(args)” blocks from raw LLM text
 
 Handles errors and can retry mis‑formatted responses
