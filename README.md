@@ -44,7 +44,62 @@ This project compares tokenization behavior between OpenAI models (like GPT-3.5,
 3. Install dependencies
 ## 🔧 Setup
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+⚙️ Configuration
+Create a .env in the project root to point at your Ollama server:
+
+OLLAMA_API_BASE=http://127.0.0.1:11434
+Note: .env is already in .gitignore, so your secrets stay local.
+
+💻 Usage
+1. Interactive Script
+Run the menu‑driven agent:
+
+python run_agent.py
+You’ll see a list of models. Pick one (1–6), enter your prompt, and get the response:
+
+Choose a model:
+ 1. ollama_chat/qwen2:7b
+ 2. ollama_chat/deepseek-r1:latest
+
+Pick model number (1–6): 3
+Enter your prompt: Hello, AI!
+🧠 Response: “Hi there! How can I help…”
+2. Import in Your Code
+python
+Copy
+Edit
+from smolagents import LiteLLMModel, ChatMessage
+import os
+
+model = LiteLLMModel(
+    model_id="ollama_chat/mistral:latest",
+    api_base=os.environ["OLLAMA_API_BASE"]
+)
+
+msg = ChatMessage(role="user", content=[{"type": "text", "text": "Tell me a joke"}])
+response = model([msg])
+print(response.content)
+3. Jupyter Notebook
+Open app.ipynb and run each cell to experiment with tokenization, model calls, and plotting.
+
+🧪 Tests
+A simple smoke test lives in test.py. Run:
+
+python test.py
+It will invoke the default model on a fixed prompt and exit cleanly.
+
+🤝 Contributing
+Fork the repo
+
+Create a branch: git checkout -b feat/your-feature
+
+Commit your changes: git commit -am "Add <feature>"
+
+Push to your branch: git push origin feat/your-feature
+
+Open a Pull Request
+
+📄 License
+This project is released under the MIT License. See LICENSE for details.
+
+© 2025 Sam (skalaliya) · GitHub
