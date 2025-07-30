@@ -6,6 +6,20 @@ Smolagents is a lightweight Python library that provides basic building blocks�
 
 An agent is any system (often powered by an LLM) that decides, acts, and possibly loops or calls tools to solve a task, whereas smolagents is a specific minimal Python library that gives you the building blocks (tools, memory, output parsers, prompts, etc.) to actually implement those agents without writing all the plumbing yourself.
 
+## Key Difference between agent and smolagents
+
+Agent: a general term for any system (often LLM‑powered) that takes inputs, makes decisions, optionally loops or calls external tools, and produces outputs.
+
+smolagents: a tiny Python toolkit that gives you ready‑made pieces (tool definitions, memory, output parsers, prompt templates, retries) so you don’t have to hand‑craft the plumbing for multi‑step or tool‑calling agents.
+
+## When to use which
+
+If you just need a one‑off prompt or a simple loop, you can roll your own “agent” with straight Python and LLM calls.
+
+Once you want cleaner tool‑calling, memory, retries or reusable chains—i.e. anything beyond a single prompt—grab smolagents so you can focus on logic, not boilerplate.
+
+
+
 ## Why smolagents ?
 
 For some low-level agentic use cases, like chains or routers, you can write all the code yourself. You’ll be much better that way, since it will let you control and understand your system better.
