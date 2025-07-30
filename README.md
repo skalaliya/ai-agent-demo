@@ -40,6 +40,41 @@ But wait, since we give room to LLMs in decisions, surely they will make mistake
 All these elements need tight coupling to make a well-functioning system. That’s why we decided we needed to make basic building blocks to make all this stuff work together
 
 
+## Here’s a bird’s‑eye view of what you get inside smolagents:
+
+### smolagents.models
+- LiteLLMModel – A drop‑in wrapper around any OpenAI‑compatible chat/completion API (Ollama, OpenAI, etc.)
+- ChatMessage – A simple class for “role + content” messages
+
+smolagents.agents
+- Agent – Base class to orchestrate multi‑step loops (think ReAct: Thought → Action → Observation)
+- AgentConfig – Holds settings like system prompts, retry logic, & max turns
+
+smolagents.tools
+- Tool – Defines name, description, and a Python function to call
+
+Built‑in examples: e.g. calculator, HTTP fetch, file reader
+
+smolagents.memory
+- InMemoryMemory – Keeps track of past observations/prompts in a list
+
+(You can swap in your own DB‑backed memory if needed)
+
+smolagents.chain
+- Chain – Simple way to wire multiple calls together (model → tool → model → …)
+
+smolagents.parsers
+- OutputParser – Extracts “Action: …(args)” blocks from raw LLM text
+
+Handles errors and can retry mis‑formatted responses
+
+smolagents.prompts & smolagents.utils
+
+Prompt templates for system/setup/tool‑calling
+
+Helpers for logging, exponential backoff, and type‑checking
+
+
 # AI Agent Demo
 
 A minimal Python project showing how to chat with local Ollama LLMs via the [🤗 smolagents](https://github.com/huggingface/smolagents) library.  
