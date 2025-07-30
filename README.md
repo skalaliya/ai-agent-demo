@@ -1,6 +1,6 @@
 ### What is smolagents
 
-smolagents is a lightweight Python library that provides basic building blocks—like tools, agents, memory, and output parsers—to help you easily orchestrate LLM‑driven multi‑step workflows and tool‑calling logic.
+Smolagents is a lightweight Python library that provides basic building blocks—like tools, agents, memory, and output parsers—to help you easily orchestrate LLM‑driven multi‑step workflows and tool‑calling logic.
 
 ## What is An agent 
 
