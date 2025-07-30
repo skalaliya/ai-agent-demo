@@ -1,3 +1,26 @@
+**What is smolagents ** - smolagents is a lightweight Python library that provides basic building blocks—like tools, agents, memory, and output parsers—to help you easily orchestrate LLM‑driven multi‑step workflows and tool‑calling logic.
+
+**What is An agent** - An agent is any system (often powered by an LLM) that decides, acts, and possibly loops or calls tools to solve a task, whereas smolagents is a specific minimal Python library that gives you the building blocks (tools, memory, output parsers, prompts, etc.) to actually implement those agents without writing all the plumbing yourself.
+
+**Why smolagents ?**
+For some low-level agentic use cases, like chains or routers, you can write all the code yourself. You’ll be much better that way, since it will let you control and understand your system better.
+
+But once you start going for more complicated behaviours like letting an LLM call a function (that’s “tool calling”) or letting an LLM run a while loop (“multi-step agent”), some abstractions become necessary:
+
+For tool calling, you need to parse the agent’s output, so this output needs a predefined format like “Thought: I should call tool ‘get_weather’. Action: get_weather(Paris).”, that you parse with a predefined function, and system prompt given to the LLM should notify it about this format.
+For a multi-step agent where the LLM output determines the loop, you need to give a different prompt to the LLM based on what happened in the last loop iteration: so you need some kind of memory.
+See? With these two examples, we already found the need for a few items to help us:
+
+Of course, an LLM that acts as the engine powering the system
+A list of tools that the agent can access
+A system prompt guiding the LLM on the agent logic: ReAct loop of Reflection -> Action -> Observation, available tools, tool calling format to use…
+A parser that extracts tool calls from the LLM output, in the format indicated by system prompt above.
+A memory
+But wait, since we give room to LLMs in decisions, surely they will make mistakes: so we need error logging and retry mechanisms.
+
+All these elements need tight coupling to make a well-functioning system. That’s why we decided we needed to make basic building blocks to make all this stuff work together
+
+
 # AI Agent Demo
 
 A minimal Python project showing how to chat with local Ollama LLMs via the [🤗 smolagents](https://github.com/huggingface/smolagents) library.  
